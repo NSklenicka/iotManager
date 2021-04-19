@@ -2,9 +2,10 @@
 #define IFTTTACCESSMANAGER_H
 
 #include <QObject>
-
-class QNetworkAccessManager;
-class QNetworkReply;
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+//class QNetworkAccessManager;
+//class QNetworkReply;
 
 class IftttAccessManager : public QObject
 {

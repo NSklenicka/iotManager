@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <iftttaccessmanager.h>
 
-class IftttAccessManager;
+//class IftttAccessManager;
 
 namespace Ui {
 class MainWindow;
