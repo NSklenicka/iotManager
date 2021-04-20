@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QDebug>
+#include <webhookposter.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -8,15 +9,19 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    m_iftttAccessManager = new IftttAccessManager(this);
+//    m_iftttAccessManager = new IftttAccessManager(this);
 
-    connect(m_iftttAccessManager, &IftttAccessManager::postFinished, this,
-             [](const QString &result){
-       qDebug() << result;
-    });
+//    connect(m_iftttAccessManager, &IftttAccessManager::postFinished, this,
+//             [](const QString &result){
+//       qDebug() << result;
+//    });
 
-    m_iftttAccessManager->requestPost();
-    qDebug() << "POST Started";
+//    m_iftttAccessManager->requestPost();
+//    qDebug() << "POST Started";
+
+    WebhookPoster *iot = new WebhookPoster;
+    iot->post();
+
 }
 
 MainWindow::~MainWindow()

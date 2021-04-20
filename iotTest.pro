@@ -28,11 +28,13 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    iftttaccessmanager.cpp
+    iftttaccessmanager.cpp \
+    webhookposter.cpp
 
 HEADERS += \
         mainwindow.h \
-    iftttaccessmanager.h
+    iftttaccessmanager.h \
+    webhookposter.h
 
 FORMS += \
         mainwindow.ui
