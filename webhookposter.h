@@ -9,14 +9,14 @@ class WebhookPoster : public QObject
 public:
     explicit WebhookPoster(QObject *parent = nullptr);
 
-    bool post();
+    static bool post( QString eventName, QString webhooksKey, QString &error );
 
 signals:
 
 private:
 
-    QString _eventName = "sklenitronTest";
-    QString _webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
+    //QString _eventName = "sklenitronTest";
+    //QString _webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
 
 public slots:
 };
