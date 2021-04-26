@@ -9,25 +9,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    m_iftttAccessManager = new IftttAccessManager(this);
-
-//    connect(m_iftttAccessManager, &IftttAccessManager::postFinished, this,
-//             [](const QString &result){
-//       qDebug() << result;
-//    });
-
-//    m_iftttAccessManager->requestPost();
-//    qDebug() << "POST Started";
-
-//    WebhookPoster *iot = new WebhookPoster;
-//    iot->post();
-
     QString eventName = "sklenitronTest";
     QString webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
     QString error;
 
-    WebhookPoster::post(eventName, webhooksKey, error);
-    qDebug() << "Error: " << error;
+    if(!WebhookPoster::post(eventName, webhooksKey, error))
+        qDebug() << "Post failed. Error: " << error;
+    else {
+        qDebug() << "Post returned true.";
+    }
 
 }
 

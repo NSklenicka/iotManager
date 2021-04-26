@@ -15,10 +15,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
+
     Ui::MainWindow *ui;
     IftttAccessManager *m_iftttAccessManager;
 };

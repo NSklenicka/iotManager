@@ -11,12 +11,6 @@ public:
 
     static bool post( QString eventName, QString webhooksKey, QString &error );
 
-signals:
-
-private:
-
-    //QString _eventName = "sklenitronTest";
-    //QString _webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
 
 public slots:
 };
