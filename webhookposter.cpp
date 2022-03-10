@@ -10,17 +10,26 @@ WebhookPoster::WebhookPoster(QObject *parent) : QObject(parent)
 
 }
 
-bool WebhookPoster::post( QString eventName, QString webhooksKey, QString &error)
+bool WebhookPoster::postEvent(QString eventName, QString webhooksKey, QString &error)
 {
-    QUrl url("https://maker.ifttt.com/trigger/" + eventName
-             + "/with/key/" + webhooksKey);
-    QUrlQuery postData;
-    url.setQuery(postData);
+
+}
+
+bool WebhookPoster::postKeyValue( QString const& eventName, QString const& webhooksKey,
+                                  QString const& key, QString const& value, QString &error )
+{
+
+    QUrl url("https://maker.ifttt.com/trigger/" +eventName+ "/json/with/key/" +webhooksKey);
+    //QUrlQuery postData;
+    QByteArray data = QString("{\"%1\":\"%2\"}").arg(key).arg(value).toLatin1();
+    //QByteArray json{"{\"Error\":\"a bad thing happened!\"}"};
+    //QByteArray str{"{\"Hello\"}"};//bad request
+    //postData.setQuery(json);
+    //url.setQuery(postData);
     QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader,
-        "application/x-www-form-urlencoded");
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     QNetworkAccessManager networkManager;
-    QNetworkReply *networkReply = networkManager.post(request, postData.toString(QUrl::FullyEncoded).toUtf8());
+    QNetworkReply *networkReply = networkManager.post(request, data);
     qDebug() << "networkManager.post started";
 
     // Start a timeout timer.

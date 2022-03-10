@@ -9,14 +9,16 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString eventName = "sklenitronTest";
+    QString eventName = "testmsg";
     QString webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
+    QString key = "msg";
+    QString value = "Hello!";
     QString error;
 
-    if(!WebhookPoster::post(eventName, webhooksKey, error))
+    if(!WebhookPoster::postKeyValue(eventName, webhooksKey, key, value, error))
         qDebug() << "Post failed. Error: " << error;
     else {
-        qDebug() << "Post returned true.";
+        qDebug() << "We're Good!";
     }
 
 }
