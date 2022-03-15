@@ -32,7 +32,7 @@ bool WebhookPoster::PostStringList(QString eventName, QString webhooksKey, QStri
     if(!list.isEmpty())
         data.append("?");
 
-    for(int i = 0; i < list.size(); ++i)
+    for(int i = 0; i < list.size() && i < 3; ++i)
     {
         data.append(QString("value%2=%1&").arg(list[i]).arg(i+1));
     }

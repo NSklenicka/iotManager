@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //QString key = "myKey";
     //QString value = "Hello!";
     QString error;
-    QStringList list{"my", "pretty", "eyes"};
+    QStringList list{"my", "pretty", "eyes", "fake"};
 
     //if(!WebhookPoster::postKeyValue(eventName, webhooksKey, key, value, error))
     //if(!WebhookPoster::postEvent(eventName, webhooksKey, error))
