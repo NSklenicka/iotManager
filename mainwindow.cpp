@@ -11,14 +11,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     QString eventName = "nojsonmsg";
     //QString eventName = "testmsg";
+    //QString eventName = "disableOutlet";
     QString webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
-    QString key = "myKey";
-    QString value = "Hello!";
+    //QString key = "myKey";
+    //QString value = "Hello!";
     QString error;
+    QStringList list{"my", "pretty", "eyes"};
 
     //if(!WebhookPoster::postKeyValue(eventName, webhooksKey, key, value, error))
     //if(!WebhookPoster::postEvent(eventName, webhooksKey, error))
-    if(!WebhookPoster::postString(eventName, webhooksKey, value, error))
+    //if(!WebhookPoster::postString(eventName, webhooksKey, value, error))
+    if(!WebhookPoster::PostStringList(eventName, webhooksKey, list, error))
         qDebug() << "Post failed. Error: " << error;
     else {
         qDebug() << "We're Good!";

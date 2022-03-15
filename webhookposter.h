@@ -27,7 +27,7 @@ public:
      * Post a simple event IFTTT webhook with multiple strings
      * x-www-form-urlencoded, will not work with 'json payload'
      */
-    static bool PostStringList( QString eventName, QString webhooksKey, QString value1, QString &error );
+    static bool PostStringList( QString eventName, QString webhooksKey, QStringList stringList, QString &error );
 
 
     /*

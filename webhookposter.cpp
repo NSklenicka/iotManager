@@ -12,30 +12,7 @@ bool WebhookPoster::postEvent(QString eventName, QString webhooksKey, QString &e
     QUrl url("https://maker.ifttt.com/trigger/" +eventName+ "/with/key/" +webhooksKey);
     QNetworkRequest request(url);
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");//maybe don't need this
-    QNetworkAccessManager networkManager;
-    QNetworkReply *networkReply = networkManager.post(request, QByteArray());
-    qDebug() << "post started";
-
-    // Start a timeout timer.
-    QTime timer;
-    timer.start();
-
-    QNetworkReply::NetworkError networkError;
-    while( !networkReply->isFinished() )
-    {
-        if( timer.elapsed() >= ( TIMEOUT_SEC * 1000 ) )
-        {
-            networkReply->abort();
-            error = QString("timeout after %1 seconds waiting for network reply").arg(TIMEOUT_SEC);
-            return false;
-        }
-        QApplication::processEvents();
-    }
-    qDebug() << "post finished";
-    networkError = networkReply->error();
-    error = networkReply->errorString();
-    networkReply->deleteLater();
-    return networkError == QNetworkReply::NoError;
+    return PostRequest(error, request);
 }
 
 
@@ -49,9 +26,24 @@ bool WebhookPoster::postString(QString eventName, QString webhooksKey, QString v
     return PostRequest(error, request);
 }
 
-bool WebhookPoster::PostStringList(QString eventName, QString webhooksKey, QString value1, QString &error)
+bool WebhookPoster::PostStringList(QString eventName, QString webhooksKey, QStringList list, QString &error)
 {
-    return true;
+    QString data;
+    if(!list.isEmpty())
+        data.append("?");
+
+    for(int i = 0; i < list.size(); ++i)
+    {
+        data.append(QString("value%2=%1&").arg(list[i]).arg(i+1));
+    }
+    data.chop(1);//remove last &
+    qDebug() << "data: " << data;
+
+    QUrl url("https://maker.ifttt.com/trigger/" +eventName+ "/with/key/" +webhooksKey +data);
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    return PostRequest(error, request);
 }
 
 
