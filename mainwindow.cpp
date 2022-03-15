@@ -10,8 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     QString eventName = "nojsonmsg";
+    //QString eventName = "testmsg";
     QString webhooksKey = "bEY74TfCAvDG6WFTnTuLP9";
-    QString key = "key";
+    QString key = "myKey";
     QString value = "Hello!";
     QString error;
 
