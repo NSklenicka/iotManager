@@ -3,15 +3,23 @@
 #include <QUrlQuery>
 #include <QNetworkReply>
 #include <QDebug>
-#include <QApplication>
 
 #define TIMEOUT_SEC 3
+
+#ifdef QT_WIDGETS_LIB
+   #include <QApplication>
+   #define PROCESS_EVENTS QApplication::processEvents()
+#else
+    #include <QCoreApplication>
+    #define PROCESS_EVENTS QCoreApplication::processEvents()
+#endif
+
 
 bool WebhookPoster::postEvent(QString eventName, QString webhooksKey, QString &error)
 {
     QUrl url("https://maker.ifttt.com/trigger/" +eventName+ "/with/key/" +webhooksKey);
     QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");//maybe don't need this
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
     return PostRequest(error, request);
 }
 
@@ -78,7 +86,7 @@ bool WebhookPoster::PostRequest(QString &error, QNetworkRequest request, QByteAr
             error = QString("timeout after %1 seconds waiting for network reply").arg(TIMEOUT_SEC);
             return false;
         }
-        QApplication::processEvents();
+        PROCESS_EVENTS;
     }
     qDebug() << "post finished";
     networkError = networkReply->error();

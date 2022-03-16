@@ -21,12 +21,13 @@ MainWindow::MainWindow(QWidget *parent) :
     //if(!WebhookPoster::postKeyValue(eventName, webhooksKey, key, value, error))
     //if(!WebhookPoster::postEvent(eventName, webhooksKey, error))
     //if(!WebhookPoster::postString(eventName, webhooksKey, value, error))
+    /*
     if(!WebhookPoster::PostStringList(eventName, webhooksKey, list, error))
         qDebug() << "Post failed. Error: " << error;
     else {
         qDebug() << "We're Good!";
     }
-
+*/
 }
 
 MainWindow::~MainWindow()

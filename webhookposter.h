@@ -1,3 +1,9 @@
+/*
+ *
+ * A simple class of static methods to use IFTTT webhooks
+ *
+ */
+
 #ifndef WEBHOOKPOSTER_H
 #define WEBHOOKPOSTER_H
 
