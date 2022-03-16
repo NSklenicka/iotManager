@@ -2,9 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <iftttaccessmanager.h>
-
-//class IftttAccessManager;
 
 namespace Ui {
 class MainWindow;
@@ -22,7 +19,6 @@ public:
 private:
 
     Ui::MainWindow *ui;
-    IftttAccessManager *m_iftttAccessManager;
 };
 
 #endif // MAINWINDOW_H
